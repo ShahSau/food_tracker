@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link ref="stylesheet" type="text/css" href="dist/snackbar.min.css" />
+    <script src="dist/snackbar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+    <title>Food App</title>
+</head>
+
+<body>
+    <h2>Add food </h2>
+    <form id="form">
+        <div>
+            <label for="lang">Food Name</label>
+            <select name="food" id="food">
+                <option value="">Please Select</option>
+                <option value="pizza">Pizza</option>
+                <option value="pasta">Pasta</option>
+                <option value="burger">Burger</option>
+                <option value="soup">Soup</option>
+                <option value="salad">Salad</option>
+                <option value="apple">Apple</option>
+                <option value="peach">Peach</option>
+                <option value="cider">Cider</option>
+            </select>
+        </div>
+        <div>
+            <label for="carbs">Carbs</label>
+            <input type="number" name="carbs" id="carbs" min="0" max="20" step="1" placeholder="0g">
+        </div>
+
+        <div>
+            <label for="protein">Protein</label>
+            <input type="number" name="protein" id="protein" min="0" max="20" step="1" placeholder="0g">
+        </div>
+
+        <div>
+            <label for="fat">Fat</label>
+            <input type="number" name="fat" id="fat" min="0" max="20" step="1" placeholder="0g">
+        </div>
+
+        <div>
+            <label for="minerals">Minerals</label>
+            <input type="number" name="minerals" id="minerals" min="0" max="20" step="1" placeholder="0g">
+        </div>
+
+        <button type="submit" id="button">Submit</button>
+    </form>
+    <div id="canvasDiv"></div>
+    <h2>Log</h2>
+    <div id="log"></div>
+    <div id="card"></div>
+    <script src="index.js"></script>
+
+
+</body>
+
+</html>
