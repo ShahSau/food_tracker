@@ -130,17 +130,36 @@ const formData = (e) => {
       allFields.map((i) => {
         const todoDiv = document.createElement("div");
         todoDiv.classList.add("todo");
-        todoDiv.innerText = `carbs is ${Object.values(
-          i.carbs
-        )}, fat is${Object.values(i.fat)}, protein is ${Object.values(
-          i.protein
-        )}, name of the food is ${Object.values(
-          i.name
-        )} and total calories is ${
+        const h2 = document.createElement("h2");
+        h2.classList.add("h2_class");
+        h2.innerText = `name of the food is ${Object.values(i.name)}`;
+        todoDiv.appendChild(h2);
+        const para_title = document.createElement("h2");
+        para_title.classList.add("para_title");
+        para_title.innerText = ` total calories is ${
           (Number(Object.values(i.carbs)) + Number(Object.values(i.protein))) *
             4 +
           Number(Object.values(i.fat)) * 9
         }`;
+        todoDiv.appendChild(para_title);
+        const final_todo = document.createElement("div");
+        final_todo.classList.add("final_todo");
+        let p_fat = document.createElement("p");
+        p_fat.classList.add("p_fat");
+        p_fat.innerText = `fat: ${Object.values(i.fat)} `;
+        final_todo.appendChild(p_fat);
+
+        let p_protein = document.createElement("p");
+        p_protein.classList.add("p_protein");
+        p_protein.innerText = ` protein: ${Object.values(i.protein)} `;
+        final_todo.appendChild(p_protein);
+
+        let p_carbs = document.createElement("p");
+        p_carbs.classList.add("p_carbs");
+        p_carbs.innerText = ` carbs: ${Object.values(i.carbs)}`;
+        final_todo.appendChild(p_carbs);
+
+        todoDiv.appendChild(final_todo);
 
         card.appendChild(todoDiv);
       });
@@ -160,7 +179,7 @@ const formData = (e) => {
     log.innerHTML = `<p id="logValue"></p>`;
     let logValue = document.getElementById("logValue");
     let calc = total + total2;
-    logValue.innerText = `Total calories logged ${calc} cal`;
+    logValue.innerText = `Total calories logged: ${calc} cal`;
   });
 };
 

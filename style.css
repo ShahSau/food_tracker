@@ -96,7 +96,7 @@ button {
 }
 .todo {
   background-color: #88c8ee;
-  width: 320px;
+  width: 420px;
   margin: 5px;
   justify-content: center;
   align-items: center;
@@ -105,4 +105,18 @@ button {
   box-sizing: border-box;
   border-radius: 20px;
   height: auto;
+}
+
+.h2_class,
+.para_title {
+  color: #65657b;
+  font-family: sans-serif;
+}
+
+.final_todo {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-size: 28px;
 }
