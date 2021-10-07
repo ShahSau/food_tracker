@@ -13,12 +13,13 @@
 </head>
 
 <body>
-    <h2>Add food </h2>
+    <h2>Welcome to the food app </h2>
     <form id="form">
-        <div>
+        <div class="subtitle">Add details of food!</div>
+        <div class="input-container">
             <label for="lang">Food Name</label>
             <select name="food" id="food">
-                <option value="">Please Select</option>
+                <option value="">Select</option>
                 <option value="pizza">Pizza</option>
                 <option value="pasta">Pasta</option>
                 <option value="burger">Burger</option>
@@ -29,28 +30,29 @@
                 <option value="cider">Cider</option>
             </select>
         </div>
-        <div>
+        <div class="input-container">
             <label for="carbs">Carbs</label>
             <input type="number" name="carbs" id="carbs" min="0" max="20" step="1" placeholder="0g">
         </div>
 
-        <div>
+        <div class="input-container">
             <label for="protein">Protein</label>
             <input type="number" name="protein" id="protein" min="0" max="20" step="1" placeholder="0g">
         </div>
 
-        <div>
+        <div class="input-container">
             <label for="fat">Fat</label>
             <input type="number" name="fat" id="fat" min="0" max="20" step="1" placeholder="0g">
         </div>
 
-        <div>
+        <div class="input-container">
             <label for="minerals">Minerals</label>
             <input type="number" name="minerals" id="minerals" min="0" max="20" step="1" placeholder="0g">
         </div>
 
         <button type="submit" id="button">Submit</button>
     </form>
+    <h2>Stat</h2>
     <div id="canvasDiv"></div>
     <h2>Log</h2>
     <div id="log"></div>

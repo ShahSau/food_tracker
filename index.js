@@ -43,30 +43,13 @@ const API = new FetchWrapper(
   "https://firestore.googleapis.com/v1/projects/programmingjs-90a13/databases/(default)/documents/"
 );
 const endpppoint = "shah";
-// let card = document.getElementById("card");
-// API.get(endpppoint).then((repos) => {
-//   let liist = repos.documents;
-//   if (typeof liist !== "undefined") {
-//     let allFields = liist.map((i) => i.fields);
-//     let names = allFields.map((i) => {
-//       card.innerText = `carbs is ${Object.values(
-//         i.carbs
-//       )}, fat is${Object.values(i.fat)}, protein is ${Object.values(
-//         i.fat
-//       )}, name of the food is ${Object.values(i.name)} and total calories is ${
-//         (Number(Object.values(i.carbs)) + Number(Object.values(i.carbs))) * 4 +
-//         Number(Object.values(i.fat)) * 9
-//       }`;
-//     });
-//   }
-// });
 
 const formm = document.getElementById("form");
 const button = document.getElementById("button");
 const formData = (e) => {
   e.preventDefault();
   let data = new FormData(formm);
-  console.log(typeof data.get("protein"));
+  // console.log(typeof data.get("protein"));
   API.post(endpppoint, {
     fields: {
       name: { stringValue: data.get("food").toString() },
@@ -90,22 +73,14 @@ const formData = (e) => {
   formm.reset();
 
   Snackbar.show({
-    pos: "bottom-left",
     width: "220px",
     text: `Details of ${data.get("food").toString()} added successfully`,
   });
 
   let canvasDiv = document.getElementById("canvasDiv");
   canvasDiv.innerHTML = "";
-  canvasDiv.innerHTML = `<canvas id="myChart" width="400" height="400"></canvas>`;
+  canvasDiv.innerHTML = `<canvas id="myChart"></canvas>`;
   ctx = document.getElementById("myChart");
-  let log = document.getElementById("log");
-  log.innerHTML = `<p id="logValue"></p>`;
-  let logValue = document.getElementById("logValue");
-  let calc =
-    (Number(data.get("carbs")) + Number(data.get("protein"))) * 4 +
-    Number(data.get("fat")) * 9;
-  logValue.innerText = `Total calories logged ${calc}`;
 
   let myChart = new Chart(ctx, {
     type: "bar",
@@ -121,16 +96,16 @@ const formData = (e) => {
             data.get("minerals"),
           ],
           backgroundColor: [
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
-            "rgba(255, 206, 86, 0.2)",
-            "rgba(75, 192, 192, 0.2)",
+            "rgba(255, 99, 132, 0.8)",
+            "rgba(54, 162, 235, 0.8)",
+            "rgba(255, 206, 86, 0.8)",
+            "rgba(75, 192, 192, 0.8)",
           ],
           borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
+            "rgba(255, 99, 132, 0.8)",
+            "rgba(54, 162, 235, 0.8)",
+            "rgba(255, 206, 86, 0.8)",
+            "rgba(75, 192, 192, 0.8)",
           ],
           borderWidth: 1,
         },
@@ -144,27 +119,48 @@ const formData = (e) => {
       },
     },
   });
-
+  let card = document.getElementById("card");
+  let total = 0;
+  let total2 = 0;
   API.get(endpppoint).then((repos) => {
     let liist = repos.documents;
     if (typeof liist !== "undefined") {
       let allFields = liist.map((i) => i.fields);
-      let names = allFields.map((i) => {
-        //continuously append kore jaite hobe till we reach the final value
-        let card = document.getElementById("card");
-        card.innerText = `carbs is ${Object.values(
+      console.log(allFields);
+      allFields.map((i) => {
+        const todoDiv = document.createElement("div");
+        todoDiv.classList.add("todo");
+        todoDiv.innerText = `carbs is ${Object.values(
           i.carbs
         )}, fat is${Object.values(i.fat)}, protein is ${Object.values(
-          i.fat
+          i.protein
         )}, name of the food is ${Object.values(
           i.name
         )} and total calories is ${
-          (Number(Object.values(i.carbs)) + Number(Object.values(i.carbs))) *
+          (Number(Object.values(i.carbs)) + Number(Object.values(i.protein))) *
             4 +
           Number(Object.values(i.fat)) * 9
         }`;
+
+        card.appendChild(todoDiv);
+      });
+
+      allFields.map((i) => {
+        total +=
+          (Number(Object.values(i.carbs)) + Number(Object.values(i.protein))) *
+            4 +
+          Number(Object.values(i.fat)) * 9;
       });
     }
+    total2 =
+      (Number(data.get("carbs")) + Number(data.get("protein"))) * 4 +
+      Number(data.get("fat")) * 9;
+    //calories calculations
+    let log = document.getElementById("log");
+    log.innerHTML = `<p id="logValue"></p>`;
+    let logValue = document.getElementById("logValue");
+    let calc = total + total2;
+    logValue.innerText = `Total calories logged ${calc} cal`;
   });
 };
 
